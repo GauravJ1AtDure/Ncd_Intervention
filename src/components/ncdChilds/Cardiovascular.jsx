@@ -1,19 +1,34 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 /*import {fetchApi} from '../../redux/slice/Slice';*/
 
 function Cardiovascular(props) {
 
     const [cardiovascularChilds, setCardiovascularChilds] = useState([]);
-
+    let navigate = useNavigate();
     /*const dispatch=useDispatch();*/
     const state =useSelector((state)=>state)
     
     let arr=[]
-    arr.push(state.ncd.data)
-  
+    arr.push(state.ncdChild.data[1])
+    
+    const getId=(e)=>{
+      /*console.log('state',state) 
+      console.log('ncdArr',ncdArr)
+      console.log('fetchApi',fetchApi)*/
+      if (e.target.value==="61"){
+      let path = `cvdriskassesment`; 
+       navigate(path);
+      }
+      else
+      {
+       let path="";
+       navigate(path);
+      }
+     }
 
-      //console.log('arr', arr)
+    //console.log('arr', arr)
 
 
   return (
@@ -23,7 +38,7 @@ function Cardiovascular(props) {
 <div key={ind} className='shadow p-3 mb-5 bg-body-tertiary rounded card text-center mb-3'>
 <img src={val.logo} class="card-img-top" alt={val.title} title={val.title}/>
 <div className="card-body">
-<button type="button" className="btn btn-light">{val.title} </button>
+<button type="button" className="btn btn-light" value={val.nid} onClick={getId} >{val.title} </button>
 </div>
 </div>
 </div>

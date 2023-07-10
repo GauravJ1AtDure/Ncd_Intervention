@@ -30,10 +30,14 @@ function NcdIntervention() {
         // eslint-disable-next-line
       }, []);
       
-      
+    let ncdArr=[]
+    ncdArr.push(state.ncd.data) 
+    
+    
 
 const getId=(e)=>{
  console.log('state',state) 
+ console.log('ncdArr',ncdArr)
  if (e.target.value==="8"){
  let path = `cardiovascular`; 
   navigate(path);

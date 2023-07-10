@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
+
 export const fetchChildApi = createAsyncThunk('fetchApi', async()=>{
     const response= await fetch('https://extranet.who.int/whoncdspenwp/cms/json/assessment-data/61?_format=json');
     return response.json();
@@ -13,7 +14,7 @@ const sliceTwo=createSlice({
     name: 'ncdChild',
     initialState:{
         isLoading: true,
-        data:null,
+        data:[],
         isError:false,
     },
     extraReducers: (builder)=>{
@@ -23,7 +24,7 @@ const sliceTwo=createSlice({
 
         builder.addCase(fetchChildApi.fulfilled, ( childState, action) => {
             childState.isLoading= false;
-            childState.data=action.payload;
+            childState.data.push(...[action.payload]);
         });
 
         builder.addCase(fetchChildApi.rejected, (childState, action) => {

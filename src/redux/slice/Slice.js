@@ -10,7 +10,7 @@ const sliceOne=createSlice({
     name: 'ncd',
     initialState:{
         isLoading: true,
-        data:null,
+        data:[],
         isError:false,
     },
     extraReducers: (builder)=>{
@@ -21,6 +21,7 @@ const sliceOne=createSlice({
         builder.addCase(fetchApi.fulfilled, (state, action) => {
             state.isLoading= false;
             state.data=action.payload;
+            
         });
 
         builder.addCase(fetchApi.rejected, (state, action) => {
@@ -31,7 +32,6 @@ const sliceOne=createSlice({
 
     }
 });
-
 
 
 
