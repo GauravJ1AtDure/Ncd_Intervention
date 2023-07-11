@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchApi } from "../redux/slice/Slice";
 import { fetchChildApi } from "../redux/slice/ChildSlice";
 import { useNavigate } from 'react-router-dom';
+import { Parser } from 'html-to-react';
 import NcdInterventionCard from './NcdInterventionCard';
 
 
@@ -52,10 +53,10 @@ const getId=(e)=>{
 
   return (
     
-     <div className="row">
+     <div className="row container-sm">
         {ncdHomeArr.map((value, index)=>
         <div className='col-md-4 mx-auto' key={index}>
-        <NcdInterventionCard nid={value.nid} key={index} title={value.title} logo={value.logo} onclick={getId}/>
+        <NcdInterventionCard nid={value.nid} key={index} title={Parser().parse(value.title)} logo={value.logo} onclick={getId}/>
          
   </div>
   )}
