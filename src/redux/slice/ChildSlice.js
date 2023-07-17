@@ -24,7 +24,7 @@ const sliceTwo=createSlice({
 
         builder.addCase(fetchChildApi.fulfilled, ( childState, action) => {
             childState.isLoading= false;
-            childState.data.push(...[action.payload]);
+            childState.data=[...[action.payload]];
         });
 
         builder.addCase(fetchChildApi.rejected, (childState, action) => {
